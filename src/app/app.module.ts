@@ -5,10 +5,18 @@ import { HttpModule } from '@angular/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { IssuePageComponent } from './issue-page/issue-page.component';
+import { ServerPageComponent } from './server-page/server-page.component';
+import { ApplicationPageComponent } from './application-page/application-page.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    NavbarComponent,
+    IssuePageComponent,
+    ServerPageComponent,
+    ApplicationPageComponent
   ],
   imports: [
     BrowserModule,
