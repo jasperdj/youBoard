@@ -1,5 +1,5 @@
 <div class="ui cards">
-  <div class="ui raised card" *ngFor="let appStats of getApplicationStats()">
+  <div class="ui raised card" *ngFor="let appStats of getApplicationStats()" [ngClass]="{'isOnline': appStats.statValues[0] === 'yes'}">
     <div class="header">{{appStats.name}}</div>
     <hr />
     <div class="body">

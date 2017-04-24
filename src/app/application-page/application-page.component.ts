@@ -15,7 +15,7 @@ export class ApplicationPageComponent implements OnInit {
   getApplicationStats() {
     return [
       {name: 'Contact node', statLabels: ['Online', 'Aantal meters'], statValues: ['yes', 1233]},
-      {name: 'Contact node', statLabels: ['Online', 'Aantal meters'], statValues: ['yes', 1233]}
+      {name: 'Contact node', statLabels: ['Online', 'Aantal meters'], statValues: ['no', 1233]}
     ];
   }
 
