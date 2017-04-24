@@ -5,15 +5,15 @@ import {ServerPageComponent} from './server-page/server-page.component';
 import {ApplicationPageComponent} from 'app/application-page/application-page.component';
 
 const routes: Routes = [
-  {
-    path: '',
-    children: []
-  }, {
+ {
     path: 'issues',
     component: IssuePageComponent
   }, {
     path: 'servers',
     component: ServerPageComponent
+  }, { path: '',
+    redirectTo: '/issues',
+    pathMatch: 'full'
   }, {
     path: 'applicaties',
     component: ApplicationPageComponent

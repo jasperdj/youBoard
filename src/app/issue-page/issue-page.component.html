@@ -1,0 +1,37 @@
+<div class="ui segment">
+
+  <table class="ui compact celled definition table">
+    <thead class="full-width">
+    <tr>
+      <th>Erken</th>
+      <th>Ontstaan op</th>
+      <th>Beschrijving</th>
+      <th>Source</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let issue of getIssues()" [ngClass]="{'persistentIssue': !issue.canBeAccepted, 'transientIssue': issue.canBeAccepted}">
+      <td class="collapsing">
+        <input style="width:17px; height:17px; margin-left:10px;" type="checkbox" [attr.disabled]="!issue.canBeAccepted ? true : null">
+      </td>
+      <td>{{issue.datetime}}</td>
+      <td>{{issue.description}}</td>
+      <td>{{issue.source}}</td>
+    </tr>
+
+    <tfoot class="full-width">
+    <tr>
+      <th></th>
+      <th colspan="4">
+        <div class="ui right floated small primary labeled icon button">
+          <i class="checkmark box icon"></i> Erken
+        </div>
+      </th>
+    </tr>
+    </tfoot>
+  </table>
+
+
+</div>
+
+
