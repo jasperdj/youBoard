@@ -1,0 +1,37 @@
+<div id="login" class="container-fluid main">
+  <div class="row">
+    <div class="col-lg-12">
+      <div id="loginPopup">
+        <div class="tiny reveal" id="loginReveal">
+          <div>
+            <div class="ui middle aligned center aligned grid" style="width:25%; margin:auto">
+              <div class="column">
+                <h2 class="ui teal image header">
+                  <div class="content title">Inloggen</div>
+                </h2>
+                <form class="ui large form" (ngSubmit)="onSubmit(f)" #f="ngForm">
+                  <div class="ui stacked segment">
+                    <div class="field">
+                      <div class="ui left icon input">
+                        <i class="user icon large">
+                        </i>
+                        <input type="text" name="username" placeholder="Gebruikersnaam" ngModel>
+                      </div>
+                    </div>
+                    <div class="field">
+                      <div class="ui left icon input">
+                        <i class="lock icon large"></i>
+                        <input type="password" name="password" placeholder="Wachtwoord" ngModel>
+                      </div>
+                    </div>
+                    <button type="submit" class="ui fluid large blue submit button">Log In</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

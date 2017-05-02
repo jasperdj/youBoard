@@ -9,6 +9,8 @@ import {NavbarComponent} from './navbar/navbar.component';
 import {IssuePageComponent} from './issue-page/issue-page.component';
 import {ServerPageComponent} from './server-page/server-page.component';
 import {ApplicationPageComponent} from './application-page/application-page.component';
+import {ServerService} from "./services/server.service";
+import { LoginPageComponent } from './login-page/login-page.component';
 
 
 @NgModule({
@@ -17,7 +19,8 @@ import {ApplicationPageComponent} from './application-page/application-page.comp
     NavbarComponent,
     IssuePageComponent,
     ServerPageComponent,
-    ApplicationPageComponent
+    ApplicationPageComponent,
+    LoginPageComponent
   ],
   imports: [
     BrowserModule,
@@ -25,7 +28,7 @@ import {ApplicationPageComponent} from './application-page/application-page.comp
     HttpModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [ServerService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
