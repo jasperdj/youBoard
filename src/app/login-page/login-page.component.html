@@ -9,19 +9,25 @@
                 <h2 class="ui teal image header">
                   <div class="content title">Inloggen</div>
                 </h2>
+
                 <form class="ui large form" (ngSubmit)="onSubmit(f)" #f="ngForm">
                   <div class="ui stacked segment">
+                    <div *ngIf="error" class="ui negative message">
+                      <div class="header">
+                        Dit account kan niet gevonden worden.
+                      </div>
+                    </div>
                     <div class="field">
                       <div class="ui left icon input">
                         <i class="user icon large">
                         </i>
-                        <input type="text" name="username" placeholder="Gebruikersnaam" ngModel>
+                        <input [ngClass]="{'red': error}" type="text" name="username" placeholder="Gebruikersnaam" ngModel>
                       </div>
                     </div>
                     <div class="field">
                       <div class="ui left icon input">
                         <i class="lock icon large"></i>
-                        <input type="password" name="password" placeholder="Wachtwoord" ngModel>
+                        <input [ngClass]="{'red': error}" type="password" name="password" placeholder="Wachtwoord" ngModel>
                       </div>
                     </div>
                     <button type="submit" class="ui fluid large blue submit button">Log In</button>

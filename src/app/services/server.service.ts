@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Http} from '@angular/http';
+import {Headers, Http, RequestOptions} from '@angular/http';
 
 @Injectable()
 export class ServerService {
@@ -8,12 +8,9 @@ export class ServerService {
   }
 
   login(username: string, password: string) {
-    const urlSearchParams = new URLSearchParams();
-    urlSearchParams.append('username', username);
-    urlSearchParams.append('password', password);
-    const body = urlSearchParams.toString();
-
-    return this.http.post('api/auth/login/', body);
+    const headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
+    const options = new RequestOptions({ headers: headers });
+    return this.http.post('api/auth/login/', 'username=' + username + '&password=' + password, options);
   }
 
   getIssues() {
