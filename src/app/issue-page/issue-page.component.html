@@ -10,13 +10,15 @@
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let issue of getIssues()" [ngClass]="{'persistentIssue': !issue.canBeAccepted, 'transientIssue': issue.canBeAccepted}">
+    <tr *ngFor="let issue of issues"
+        [ngClass]="{'persistentIssue': !issue.persistent, 'transientIssue': issue.persistent}">
       <td class="collapsing">
-        <input style="width:17px; height:17px; margin-left:10px;" type="checkbox" [attr.disabled]="!issue.canBeAccepted ? true : null">
+        <input style="width:17px; height:17px; margin-left:10px;" type="checkbox"
+               [attr.disabled]="!issue.persistent ? true : null">
       </td>
-      <td>{{issue.datetime}}</td>
-      <td>{{issue.description}}</td>
-      <td>{{issue.source}}</td>
+      <td>{{ issue.datetime }}</td>
+      <td>{{ issue.description }}</td>
+      <td>{{ issue.source }}</td>
     </tr>
 
     <tfoot class="full-width">
@@ -30,8 +32,6 @@
     </tr>
     </tfoot>
   </table>
-
-
 </div>
 
 

@@ -14,7 +14,7 @@ export class ServerService {
   }
 
   getIssues() {
-    return this.http.get('/issues/');
+    return this.http.get('api/issues/');
   }
 
 }
