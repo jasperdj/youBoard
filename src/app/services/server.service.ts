@@ -17,4 +17,8 @@ export class ServerService {
     return this.http.get('api/issues/');
   }
 
+  getApplicationNodes() {
+    return this.http.get('api/gateways/');
+  }
+
 }

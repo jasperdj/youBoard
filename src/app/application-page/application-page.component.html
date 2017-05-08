@@ -1,12 +1,13 @@
 <div class="ui cards">
-  <div class="ui raised card" *ngFor="let appStats of getApplicationStats()" [ngClass]="{'isOnline': appStats.statValues[0] === 'yes'}">
-    <div class="header">{{appStats.name}}</div>
+  <div class="ui raised card" *ngFor="let node of nodes" [ngClass]="{'isOnline': node.online}">
+    <div class="header">{{node.name}}</div>
     <hr />
     <div class="body">
       <ul>
-        <li *ngFor="let statLabel of appStats.statLabels; let i = index;"><strong>{{statLabel}}:</strong> {{appStats.statValues[i]}}</li>
+        <li *ngFor="let gateway of node.gateways; let i = index;"><strong>{{gateway.name}}:</strong>
+          {{ gateway.measurements[gateway.measurements.length-1] !== undefined ?
+          gateway.measurements[gateway.measurements.length-1].value : 'null'}} </li>
       </ul>
     </div>
   </div>
-
 </div>

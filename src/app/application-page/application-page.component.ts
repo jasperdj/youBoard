@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {ServerService} from '../services/server.service';
 
 @Component({
   selector: 'app-application-page',
@@ -6,17 +7,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./application-page.component.less']
 })
 export class ApplicationPageComponent implements OnInit {
+  nodes = [];
 
-  constructor() { }
+  constructor(private serverService: ServerService) { }
 
   ngOnInit() {
-  }
-
-  getApplicationStats() {
-    return [
-      {name: 'Contact node', statLabels: ['Online', 'Aantal meters'], statValues: ['yes', 1233]},
-      {name: 'Contact node', statLabels: ['Online', 'Aantal meters'], statValues: ['no', 1233]}
-    ];
+    this.serverService.getApplicationNodes()
+      .subscribe(
+        (response) => {
+          this.nodes = response.json();
+          console.log(this.nodes);
+        },
+        (error) => console.log(error)
+      );
   }
 
 }
