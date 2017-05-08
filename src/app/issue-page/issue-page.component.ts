@@ -3,6 +3,7 @@ import {Component, Injectable, OnInit} from '@angular/core';
 import {Http, Response} from '@angular/http';
 import 'rxjs/add/operator/map';
 import {ServerService} from '../services/server.service';
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-issue-page',
@@ -20,12 +21,19 @@ export class IssuePageComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.serverService.getIssues().subscribe(
-      (response) => {
-        this.issues = response.json();
-        console.log(this.issues);
-      },
-      (error) => console.log(error)
+    const apiCallTimer = Observable.timer(0, 10000);
+    apiCallTimer.subscribe(
+
+      t => {
+        this.serverService.getIssues().subscribe(
+          (response) => {
+            this.issues = response.json();
+            console.log(this.issues);
+          },
+          (error) => console.log(error)
+        );
+      }
+
     );
   }
 }
