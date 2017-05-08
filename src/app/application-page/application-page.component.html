@@ -4,6 +4,7 @@
     <hr />
     <div class="body">
       <ul>
+        <li><strong>Online: </strong>{{node.online ? 'Ja' : 'Nee'}}</li>
         <li *ngFor="let gateway of node.gateways; let i = index;"><strong>{{gateway.name}}:</strong>
           {{ gateway.measurements[gateway.measurements.length-1] !== undefined ?
           gateway.measurements[gateway.measurements.length-1].value : 'null'}} </li>
