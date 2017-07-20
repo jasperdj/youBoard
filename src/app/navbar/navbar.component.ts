@@ -9,9 +9,9 @@ import {Router} from '@angular/router';
 export class NavbarComponent implements OnInit {
   router: Router;
 
-  title = 'EDH Dashboard';
+  title = 'YouBoard';
 
-  links = [{label: 'Issues', url: '/issues'}, {label: 'Servers', url: '/servers'}, {label: 'Applicaties', url: '/applicaties'}];
+  links = [{label: 'Targets', url: '/targets'}];
 
   constructor(private _router: Router ) {
     this.router = _router;

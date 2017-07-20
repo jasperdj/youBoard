@@ -1,16 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-import {ServerService} from '../services/server.service';
+import {RescuetimeService} from '../services/rescuetime.service';
 import {Observable} from 'rxjs';
+import { TargetPageMetricComponent } from '../target-page-metric/target-page-metric.component';
+
 
 @Component({
   selector: 'app-application-page',
   templateUrl: './application-page.component.html',
-  styleUrls: ['./application-page.component.less']
+  styleUrls: ['./application-page.component.less'],
+
 })
 export class ApplicationPageComponent implements OnInit {
   nodes = [];
 
-  constructor(private serverService: ServerService) { }
+  constructor(private serverService: RescuetimeService) { }
 
   ngOnInit() {
     const apiCallTimer = Observable.timer(0, 10000);

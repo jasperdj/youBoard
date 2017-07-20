@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {ServerService} from 'app/services/server.service';
+import {RescuetimeService} from 'app/services/rescuetime.service';
 import {Router} from '@angular/router';
 
 @Component({
@@ -9,11 +9,11 @@ import {Router} from '@angular/router';
 })
 
 export class LoginPageComponent  {
-  serverService: ServerService;
+  serverService: RescuetimeService;
   router: Router;
   error = false;
 
-  constructor(serverService: ServerService, router: Router) {
+  constructor(serverService: RescuetimeService, router: Router) {
     this.serverService = serverService;
     this.router = router;
   }

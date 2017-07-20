@@ -1,0 +1,10 @@
+<div id="metricContainer">
+
+  <ng-container *ngFor="let metric of generateArray(metrics)">
+    <app-target-page-metric *ngIf="metric.data"
+                            [title]="metric.title" [subTitle]="metric.subtitle" [metric]="metric.units"
+                            [goalScore]="metric.goal" [score]="metric.data.score" [weekGraph]="metric.data.weekGraph">
+    </app-target-page-metric>
+  </ng-container>
+
+</div>
