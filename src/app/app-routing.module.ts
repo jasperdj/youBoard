@@ -4,11 +4,12 @@ import {IssuePageComponent} from './issue-page/issue-page.component';
 import {ServerPageComponent} from './server-page/server-page.component';
 import {ApplicationPageComponent} from 'app/application-page/application-page.component';
 import {LoginPageComponent} from "./login-page/login-page.component";
+import {TargetPageComponent} from "./target-page/target-page.component";
 
 const routes: Routes = [
  {
-    path: 'issues',
-    component: IssuePageComponent
+    path: 'targets',
+    component: TargetPageComponent
   }, {
     path: 'login',
     component: LoginPageComponent
@@ -16,7 +17,7 @@ const routes: Routes = [
     path: 'servers',
     component: ServerPageComponent
   }, { path: '',
-    redirectTo: '/issues',
+    redirectTo: '/targets',
     pathMatch: 'full'
   }, {
     path: 'applicaties',

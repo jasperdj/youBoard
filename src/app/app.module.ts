@@ -9,9 +9,16 @@ import {NavbarComponent} from './navbar/navbar.component';
 import {IssuePageComponent} from './issue-page/issue-page.component';
 import {ServerPageComponent} from './server-page/server-page.component';
 import {ApplicationPageComponent} from './application-page/application-page.component';
-import {ServerService} from "./services/server.service";
+import {RescuetimeService} from './services/rescuetime.service';
 import { LoginPageComponent } from './login-page/login-page.component';
-import {AuthenticatedHttpService} from "./services/AuthenticatedHttpService.service";
+import {AuthenticatedHttpService} from './services/AuthenticatedHttpService.service';
+import { TargetPageComponent } from './target-page/target-page.component';
+import { ChartsModule } from 'ng2-charts/ng2-charts';
+import { TargetPageMetricComponent } from './target-page-metric/target-page-metric.component';
+
+import { PopoverModule } from 'ng2-bootstrap';
+import { SuiPopupModule } from 'ng2-semantic-ui';
+
 
 
 @NgModule({
@@ -21,15 +28,20 @@ import {AuthenticatedHttpService} from "./services/AuthenticatedHttpService.serv
     IssuePageComponent,
     ServerPageComponent,
     ApplicationPageComponent,
-    LoginPageComponent
+    LoginPageComponent,
+    TargetPageComponent,
+    TargetPageMetricComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ChartsModule,
+    PopoverModule.forRoot(),
+    SuiPopupModule
   ],
-  providers: [ServerService,  { provide: Http, useClass: AuthenticatedHttpService }],
+  providers: [RescuetimeService,  { provide: Http, useClass: AuthenticatedHttpService }],
   bootstrap: [AppComponent]
 })
 export class AppModule {

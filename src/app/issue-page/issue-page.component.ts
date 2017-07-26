@@ -2,7 +2,7 @@ import {Component, Injectable, OnInit} from '@angular/core';
 
 import {Http, Response} from '@angular/http';
 import 'rxjs/add/operator/map';
-import {ServerService} from '../services/server.service';
+import {RescuetimeService} from '../services/rescuetime.service';
 import {Observable} from "rxjs";
 
 @Component({
@@ -14,9 +14,9 @@ import {Observable} from "rxjs";
 @Injectable()
 export class IssuePageComponent implements OnInit {
   issues = [];
-  serverService: ServerService;
+  serverService: RescuetimeService;
 
-  constructor(private http: Http, private serviceService: ServerService) {
+  constructor(private http: Http, private serviceService: RescuetimeService) {
     this.serverService = serviceService;
   }
 

@@ -1,0 +1,27 @@
+<div class="ui raised segment" [ngClass]="{success: score >= goalScore}"
+     suiPopup [popupTemplate]="popupTemplate" popupTrigger="outsideClick">
+  <h3>{{ title }}</h3>
+  <h5>{{ subTitle }}</h5>
+  <h4><span style="font-size:17pt; text-align: center">{{score | number : '1.0-0' }}{{metric}}</span><br>({{ goalScore }}{{metric}})</h4>
+  <div class="canvasPlaceholder" *ngIf="scoreChart">
+    <canvas baseChart
+            [data]="scoreChart"
+            [labels]="chartLabels"
+            [chartType]="'doughnut'"
+            [options]="chartOptions"
+            [colors]="doughnutGraphColors"></canvas>
+  </div>
+
+  <ng-template class="popup" let-popup #popupTemplate>
+    <div class="header">Week overview</div>
+    <div class="content">
+      <canvas baseChart
+              [data]="weekGraph"
+              [labels]="lineChartLabels"
+              [chartType]="'line'"
+              [options]="chartOptions"
+              [colors]="lineGraphColor"></canvas>
+    </div>
+  </ng-template>
+
+</div>

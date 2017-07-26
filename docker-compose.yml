@@ -1,0 +1,11 @@
+version: '3'
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+    image: edh_f
+#    volumes:
+#      - ../../:/opt/app
+#    working_dir: /opt/app
