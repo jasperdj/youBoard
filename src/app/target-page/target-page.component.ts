@@ -11,9 +11,13 @@ export class TargetPageComponent implements OnInit {
   serverService: RescuetimeService;
 
   metrics = {
-    rescuetime: {
+    productivity: {
       title: 'Productivity', subtitle: 'Percentage of time spend productive behind the laptop.', units: '%',
-      goal: 80, data: null
+      goal: 80, data: null, type: 'avg'
+    },
+    timeSpend: {
+      title: 'Time spend working', subtitle: 'Amount of time spend behind the laptop.', units: ' hours',
+      goal: 35, data: null, type: 'sum'
     }
   };
 
@@ -22,10 +26,10 @@ export class TargetPageComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.serverService.getRescueTimeProductivityScoreAggregation(this.metrics.rescuetime.goal).subscribe(
+    this.serverService.getRescueTimeProductivityScoreAggregation(this.metrics.productivity.goal, this.metrics.timeSpend.goal).subscribe(
       response => {
-        this.metrics.rescuetime.data = response;
-        console.log(this.metrics);
+        this.metrics.productivity.data = response.productivityMetrics;
+        this.metrics.timeSpend.data = response.spendTimeMetrics;
       }
     );
   };

@@ -4,6 +4,8 @@ import {Headers, Http, RequestOptions, RequestOptionsArgs} from '@angular/http';
 @Injectable()
 export class RescuetimeService {
 
+  rescueTimeStats;
+
   constructor(private http: Http) {
   }
 
@@ -29,22 +31,47 @@ export class RescuetimeService {
       'format=json');
   }
 
-    getRescueTimeProductivityScoreAggregation(goal_productivityScore) {
+  getRescueTimeProductivityScoreAggregation(goal_productivityScore, goal_spendTimeHours) {
     return this.getRescueTimeProductivityScore().map(response => {
-      let productivityScores = <Array<number>> response.json().rows;
-      console.log(productivityScores);
-      productivityScores = productivityScores.map(a => a[4]);
-      const productivityScore = productivityScores.reduce((a, b) => a + b) / productivityScores.length;
+      const rescuetimeStats = <Array<number>> response.json().rows;
+      console.log(rescuetimeStats);
 
-      const relativeProductivityScore = productivityScore * 100;
-      let restNumber = 0;
-      if (relativeProductivityScore < goal_productivityScore) {
-        restNumber = 100 - (relativeProductivityScore / goal_productivityScore);
-      }
-      const totalGraph = [relativeProductivityScore / goal_productivityScore, restNumber];
-
-      return {score: productivityScore, goal: goal_productivityScore, totalGraph: totalGraph, weekGraph: productivityScores};
+      return { spendTimeMetrics: this.getSpendTimeMetrics(rescuetimeStats, goal_spendTimeHours),
+              productivityMetrics: this.getProductivityMetrics(rescuetimeStats, goal_productivityScore)};
     });
+  }
+
+  private getSpendTimeMetrics(rescuetimeStats: Array<number>, goal_spendTimeHours) {
+    const spendHoursByDay = rescuetimeStats.map(a => a[1] / 3600);
+    console.log(spendHoursByDay);
+    const totalSpendHours = spendHoursByDay.reduce((a, b) => a + b);
+
+    const rest = goal_spendTimeHours - totalSpendHours;
+    const totalGraph = [totalSpendHours, rest > 0 ? rest : 0];
+
+    return {
+      score: totalSpendHours,
+      totalGraph: totalGraph,
+      weekGraph: spendHoursByDay
+    };
+  }
+
+  private getProductivityMetrics(rescuetimeStats: Array<number>, goal_productivityScore) {
+    const productivityScores = rescuetimeStats.map(a => a[4]);
+    const averageProductivityScore = productivityScores.reduce((a, b) => a + b) / productivityScores.length;
+
+    const relativeProductivityScore = averageProductivityScore * 100;
+    let restNumber = 0;
+    if (relativeProductivityScore < goal_productivityScore) {
+      restNumber = 100 - (relativeProductivityScore / goal_productivityScore);
+    }
+    const totalGraph = [relativeProductivityScore / goal_productivityScore, restNumber];
+
+    return {
+      score: averageProductivityScore,
+      totalGraph: totalGraph,
+      weekGraph: productivityScores
+    };
   }
 
 
